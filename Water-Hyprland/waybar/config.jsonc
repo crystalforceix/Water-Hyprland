@@ -323,6 +323,7 @@
     "custom/powermenu": {
         "format": "<big> </big>",
         "tooltip": false,
+        "on-click": "wlogout",
     },
 
     "custom/slash": {

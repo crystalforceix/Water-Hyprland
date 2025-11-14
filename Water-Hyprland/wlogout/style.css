@@ -1,0 +1,96 @@
+@import "colors.css";
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+* {
+    background-image: none;
+    box-shadow: none;
+}
+
+window {
+    background-color: alpha(@background, 0.2);
+}
+
+button {
+    margin: 8px;
+    border-width: 2px;
+    background-color: alpha(@primary, 0.2);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    transition: all 100ms ease-in;
+    box-shadow: 0px 0px 0px black;
+    opacity: 0;
+}
+
+button:focus,
+button:active,
+button:hover {
+    /* 20% Overlay 2, 80% mantle
+    background-color: rgb(48, 50, 66);
+    outline-style: none; */
+    background-color: #b9b1e2; /*#b9b1e2;*/
+    outline-style: none;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+#logout {
+    background-image: image(
+        url("icons/logout.png"),
+        url("/usr/local/share/wlogout/icons/logout.png")
+    );
+    animation: appear 300ms ease-out forwards;
+    animation-delay: 0.1s;
+}
+
+#suspend {
+    background-image: image(
+        url("icons/suspend.png"),
+        url("/usr/local/share/wlogout/icons/suspend.png")
+    );
+    animation: appear 300ms ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+#hibernate {
+    background-image: image(
+        url("icons/hibernate.png"),
+        url("/usr/local/share/wlogout/icons/hibernate.png")
+    );
+    animation: appear 300ms ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+#shutdown {
+    background-image: image(
+        url("icons/shutdown.png"),
+        url("/usr/local/share/wlogout/icons/shutdown.png")
+    );
+    animation: appear 300ms ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+#reboot {
+    background-image: image(
+        url("icons/reboot.png"),
+        url("/usr/local/share/wlogout/icons/reboot.png")
+    );
+    animation: appear 300ms ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+#lock {
+    background-image: image(
+        url("icons/reboot.png"),
+        url("/usr/local/share/wlogout/icons/reboot.png")
+    );
+    animation: appear 300ms ease-out forwards;
+    animation-delay: 0s;
+}
