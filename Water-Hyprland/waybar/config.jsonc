@@ -14,43 +14,47 @@
 
 	"modules-left": ["custom/smallspacer","hyprland/workspaces","custom/spacer","mpris"],
 	"modules-center": ["custom/date","custom/slash","clock"],
-	"modules-right": ["custom/padd","custom/l_end","group/expand","cliphist","network","group/expand-3","group/expand-2","group/expand-4","custom/powermenu"],
+	"modules-right": ["custom/padd","group/expand","cliphist","network","group/expand-3","group/expand-2","group/expand-4","custom/powermenu"],
 
 
 // sourced from modules based on config.ctl //
 
-"custom/led": {
-    "format": "<span color='#021c18'>󰍿</span> <span color='#313436'></span> ",
-    "format-alt": "󰍿 <span color='#bbc2c7'></span> ",
-    "on-click": "~/mouse.sh",
+"custom/nightlight": {
+    "format": "<span color='#021c18'></span> <span color='#313436'></span> ",
+    "format-alt": "󰈈 <span color='#bbc2c7'></span> ",
+    "on-click": "~/.config/waybar/scripts/toggle_wlsunset.sh",
     "tooltip": false,
 },
 
 "upower": {
      "icon-size": 20,
-      "format": "",
-     "format-alt": "{}<span color='orange'>[{time}]</span>",
+     "format": "",
+     "format-alt": "{}<span color='orange'> [{time}]</span>",
      "tooltip": true,
      "tooltip-spacing": 20,
-      "on-click-right": "pkill waybar & hyprctl dispatch exec waybar"
+     "on-click-right": "pkill waybar & hyprctl dispatch exec waybar"
 },
 
-"upower#headset": {
-"format": " {percentage}",
-"native-path": "/org/freedesktop/UPower/devices/headset_dev_A6_98_9A_0D_D3_49",
-"show-icon": false,
-"tooltip": false,
+"power-profiles-daemon": {
+    "format": " {icon} ",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+        "default": "<span color='yellow'>⚡ Performance</span>",
+        "performance": "<span color='yellow'>⚡ Performance</span>",
+        "balanced": "<span color='grey'>⚖️ Balanced</span>",
+        "power-saver": "<span color='green'>🌿 Power-saving</span>"
+    }
 },
+
 
 "group/expand-4": {
-     "orientation": "horizontal",
-     "drawer": {
-         "transition-duration": 600,
-         "children-class": "not-power",
-       "transition-to-left": true,
-         "click-to-reveal": true
-     },
-     "modules": ["upower","upower/headset"]
+        "orientation": "inherit",
+        "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": false,
+        },
+        "modules": ["upower","power-profiles-daemon"],
    },
 
 "custom/smallspacer":{
@@ -72,9 +76,9 @@
 "mpris": {
 	"format": "{player_icon} {dynamic}",
 	"format-paused": "<span color='grey'>{status_icon} {dynamic}</span>",
-	"max-length": 50,
+	"max-length": 30,
 	"player-icons": {
-		"default": "⏸",
+		"default": "Playing -",
 		"mpv": "🎵"
 	},
 	"status-icons": {
@@ -96,12 +100,12 @@
        "transition-to-left": true,
        //  "click-to-reveal": true
      },
-     "modules": ["custom/menu","custom/spacer","tray"]
+     "modules": ["custom/menu","custom/spacer","tray","custom/spacer"]
    },
 
  "custom/menu":{
- "format": "󰅃",
- "rotate": 90,
+ "format": " ",
+ // "rotate": 90,
  },
  
 
@@ -110,11 +114,11 @@
     "format": "{icon}",
     "format-icons": {
       "notification": "󰅸",
-      "none": "󰂜",
+      "none": " ",
       "dnd-notification": "󰅸",
-      "dnd-none": "󱏨",
+      "dnd-none": "󱏨 ",
       "inhibited-notification": "󰅸",
-      "inhibited-none": "󰂜",
+      "inhibited-none": " ",
       "dnd-inhibited-notification": "󰅸",
       "dnd-inhibited-none": "󱏨"
     },
@@ -207,26 +211,12 @@
         "tooltip": true
     },
 
-    "custom/wallchange": {
-        "format": "{}",
-        "rotate": 0,
-        "exec": "echo ; echo 󰆊 switch wallpaper",
-       "on-click": "swww img --transition-type grow --transition-pos 0.071,0.988 --transition-step 255 --transition-fps 60 /home/anik/Downloads/skyway.jpg",
-        "on-click-right": "swww img --transition-type grow --transition-pos 0.071,0.988 --transition-step 255 --transition-fps 60 /home/anik/Downloads/cloud.png",
-        "on-click-middle": "swww img --transition-type grow --transition-pos 0.071,0.988 --transition-step 255 --transition-fps 60 /home/anik/Downloads/gradient.jpg",
-        "on-scroll-up": "swww img --transition-type grow --transition-pos 0.071,0.988 --transition-step 255 --transition-fps 60 /home/anik/Downloads/torvalds.png",
-        "on-scroll-down": "swww img --transition-type grow --transition-pos 0.071,0.988 --transition-step 255 --transition-fps 60 /home/anik/Downloads/night.png",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
     "custom/mouse":
     { 
             "format": "",
             "format-alt": "",
             
-            "on-click": "m8mouse -dpi 1 -led 2 -speed 4",
-        "on-click-right": "m8mouse -dpi 1 -led 4 -speed 4",
-        "on-click-middle": "m8mouse -dpi 1 -led 7 -speed 4",
+            "on-click": "~/.config/waybar/scripts/toggle_wlsunset.sh",
         "tooltip": true 
     },
 
@@ -275,6 +265,7 @@
         "format": "{:%I:%M %p}",
         "rotate": 0,
         "tooltip-format": "<tt>{calendar}</tt>",
+        "on-click": "swaync-client -t",
         "calendar": {
             "mode": "month",
             "mode-mon-col": 3,
@@ -297,7 +288,8 @@
     "custom/date": {
     "exec": "date '+%d %b'",
     "interval": 30000,
-    "tooltip": "Ngày hôm nay là $(date '+%A, %d %B %Y')"
+    "tooltip": "Today's $(date '+%A, %d %B %Y')",
+    "on-click": "swaync-client -t"
     },
 
     "battery": {
@@ -323,7 +315,7 @@
         "device": "intel_backlight",
         "rotate": 0,
         "format": "{icon}",
-        "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
+        "format-icons": ["󰃞 ", "󰃝 ", "󰃟 ", "󰃠 "],
         "scroll-step": 1,
         "min-length": 2
     },
@@ -336,6 +328,7 @@
     "custom/slash": {
         "format": "/",
         "tooltip": false,
+        "on-click": "swaync-client -t",
     },
     
      "group/expand-2": {
@@ -346,7 +339,7 @@
        "transition-to-left": true,
          "click-to-reveal": true
      },
-     "modules": ["backlight","backlight/slider","custom/smallspacer","custom/led"]
+     "modules": ["backlight","backlight/slider","custom/smallspacer","custom/nightlight"]
    },
    
     "group/expand-3": {
@@ -382,13 +375,13 @@
         "tooltip-format": "{icon} {desc} // {volume}%",
         "scroll-step": 5,
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
             "car": "",
-         "default": ["", "", ""]
+         "default": [" ", " ", " "]
         }
     },
 
@@ -403,34 +396,6 @@
         "on-scroll-down": "volumecontrol.sh -i d",
         "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
         "scroll-step": 5
-    },
-
-    "custom/notifications": {
-        "tooltip": false,
-        "format": "{icon} {}",
-        "rotate": 0,
-        "format-icons": {
-            "email-notification": "<span foreground='white'><sup></sup></span>",
-            "chat-notification": "󱋊<span foreground='white'><sup></sup></span>",
-            "warning-notification": "󱨪<span foreground='yellow'><sup></sup></span>",
-            "error-notification": "󱨪<span foreground='red'><sup></sup></span>",
-            "network-notification": "󱂇<span foreground='white'><sup></sup></span>",
-            "battery-notification": "󰁺<span foreground='white'><sup></sup></span>",
-            "update-notification": "󰚰<span foreground='white'><sup></sup></span>",
-            "music-notification": "󰝚<span foreground='white'><sup></sup></span>",
-            "volume-notification": "󰕿<span foreground='white'><sup></sup></span>",
-            "notification": "<span foreground='white'><sup></sup></span>",
-            "none": ""
-        },
-        "return-type": "json",
-        "exec-if": "which dunstctl",
-        "exec": "notifications.py",
-        "on-click": "sleep 0.1 && dunstctl history-pop",
-        "on-click-middle": "dunstctl history-clear",
-        "on-click-right": "dunstctl close-all",
-        "interval": 1,
-        "tooltip": true,
-        "escape": true
     },
     
 "custom/expand": {

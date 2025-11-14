@@ -1,3 +1,4 @@
+@import "colors.css";
 * {
     font-family: "JetBrains Mono Nerd Font";
     font-weight: bold; 
@@ -12,7 +13,7 @@
 }
 
 window#waybar {
-    background: rgba(255, 255, 255, 0.2); 
+    background-color: alpha(@background, 0.89);
 }
 
 
@@ -40,7 +41,7 @@ background: rgba(23, 23, 23, 0.0);
 
 #workspaces button {
 background: rgba(23, 23, 23, 0.0);
-    color: #A1BDCE;
+    color: @on_surface_variant;
     box-shadow: none;
 	text-shadow: none;
     border-radius: 9px;
@@ -53,7 +54,7 @@ background: rgba(23, 23, 23, 0.0);
 
 
 #workspaces button.active {
-    color: #A1BDCE;   
+    color: @primary_fixed_dim;   
     transition: all 0.3s ease;
     padding-left: 4px;
     padding-right: 4px;
@@ -127,6 +128,7 @@ margin-bottom: 6px;
 background:  #161320;
 }
 
+#power-profiles-daemon
 
 #custom-power{
     font-size: 15px;
@@ -179,7 +181,7 @@ background: @bar-bg;
 
 }
 #clock{
-    color: #A1BDCE;
+    color: @primary_fixed_dim;
     font-size: 15px;
     font-weight: 900;
     font-family: "JetBrains Mono Nerd Font";
@@ -206,7 +208,7 @@ font-weight: normal;
 font-size: 22px;
 color: #915CAF;
 }
-#custom-led{
+#custom-nightlight{
 background: #427287;
 color: #FFFFFF;
 margin-top: 7px;
@@ -251,7 +253,7 @@ padding-left: 4px
 #taskbar,
 #custom-theme,
 #custom-menu{
-color: #E8EDF0;
+color: @source_color;
 background:  rgba(23, 23, 23, 0.0);
 margin: 0px 0px 0px 0px;
     padding-left: 1px;
@@ -332,7 +334,7 @@ font-weight: normal;
 }
 
 #custom-powermenu {
-    color: #A1BDCE;
+    color: @primary_fixed;
     font-size: 15px;
     font-weight: 900;
     font-family: "JetBrains Mono Nerd Font";
@@ -344,7 +346,7 @@ font-weight: normal;
     border: none;
 }
 #custom-date {
-    color: #A1BDCE;
+    color: @primary_fixed_dim;
     font-size: 15px;
     font-weight: 900;
     font-family: "JetBrains Mono Nerd Font";
@@ -356,7 +358,7 @@ font-weight: normal;
     border: none;
 }
 #custom-slash {
-    color: #A1BDCE;
+    color: @primary_fixed_dim;
     font-size: 15px;
     font-weight: 900;
     font-family: "JetBrains Mono Nerd Font";
