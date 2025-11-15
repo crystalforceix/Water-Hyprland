@@ -841,8 +841,7 @@ class WaterHyprlandInstaller:
         print("\nInstalling OneUI4 Icons...")
         install_oneui_script_dir = os.path.join(self.source_dir, "Scripts-For-Installer", "install-oneui-scripts")
         self.run_command(["bash", "./one-ui-installer.sh"], cwd=install_oneui_script_dir)
-
-        self.install_desktop_configs(desktop_env)
+        
         self.final_setup()
         print(f"\n{self.Colors.GREEN}Installation complete.{self.Colors.ENDC}")
 
