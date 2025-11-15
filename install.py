@@ -626,130 +626,41 @@ class WaterHyprlandInstaller:
 
         if shutil.which("alacritty"):
             choice = self.get_user_choice(
-                f"\nFound alacritty and would you like to remove Normal Alacritty then install Smooth Cursor Alacritty? (It's Necessary To Replace This One.) (y/n): ",
+                f"\nFound alacritty and would you like to remove Normal Alacritty then install Alacritty Smooth Cursor? (It's Necessary To Replace This One.) (y/n): ",
                 ["y", "n"],
             )
             if choice == "y":
                 if self.dry_run:
                     print(
-                        f"{self.Colors.YELLOW}[DRY OUT] Would you like to remove Normal Alacritty then install Lumina Alacritty Smooth Cursor?{self.Colors.ENDC}"
+                        f"{self.Colors.YELLOW}[DRY OUT] Would you like to remove Normal Alacritty then install Alacritty Smooth Cursor?{self.Colors.ENDC}"
                     )
                 else:
                     try:
                         self.run_command(["sudo", "pacman", "-R", "alacritty"])
                         print(
-                            f"{self.Colors.BLUE}Removed Normal Alacritty and next we will install the Lumina Alacritty Smooth Cursor.{self.Colors.ENDC}"
+                            f"{self.Colors.BLUE}Removed Normal Alacritty and next we will install the Alacritty Smooth Cursor.{self.Colors.ENDC}"
                         )
                         print("\nInstalling Lumina Alacritty Smooth Cursor from source...")
                         alacritty_pkgbuild_dir = os.path.join(self.source_dir, "PKGBUILD", "Lumina-Alacritty-Smooth-Cursor")
                         self.run_command(["makepkg", "-si", "--noconfirm"], cwd=alacritty_pkgbuild_dir)
                         print(
-                            f"{self.Colors.GREEN}Installed Lumina Alacritty Smooth Cursor!.{self.Colors.ENDC}"
+                            f"{self.Colors.GREEN}Installed Alacritty Smooth Cursor!.{self.Colors.ENDC}"
                         )
                     except OSError as e:
                         print(
-                            f"{self.Colors.RED}Error while removing Normal Alacritty and installing Lumina Alacritty Smooth Cursor (Ignore this if you have already installed lumina-alacritty-smooth-cursor package): {e}{self.Colors.ENDC}"
+                            f"{self.Colors.RED}Error while removing Normal Alacritty and installing Alacritty Smooth Cursor (Ignore this if you have already installed Alacritty Smooth Cursor): {e}{self.Colors.ENDC}"
                         )
 
 
-        print("\nInstalling Lumina GTK3 Shell from source...")
+        print("\nInstalling Custom GTK3 Shell from source...")
         gtk3_shell_pkgbuild_dir = os.path.join(self.source_dir, "PKGBUILD", "Lumina-GTK3-Shell")
         self.run_command(["makepkg", "-si", "--noconfirm"], cwd=gtk3_shell_pkgbuild_dir)
-
-        print("\nInstalling Lumina Polkit Gnome Switch from source...")
-        polkit_gnome_switch_pkgbuild_dir = os.path.join(self.source_dir, "PKGBUILD", "Lumina-Polkit-Gnome-Switch")
-        self.run_command(["makepkg", "-si", "--noconfirm"], cwd=polkit_gnome_switch_pkgbuild_dir)
-
-        print("\nInstalling Lumina Ignis Go CLI from source...")
-        goignis_pkgbuild_dir = os.path.join(self.source_dir, "PKGBUILD", "Lumina-Ignis-Go-CLI")
-        self.run_command(["makepkg", "-si", "--noconfirm"], cwd=goignis_pkgbuild_dir)
-        
-    def check_desktop(self):
-        self.print_header("Checking Desktop Environment")
-        installed_desktops = []
-        if not self.dry_run:
-            for desktop in ["niri", "hyprland"]:
-                if shutil.which(desktop):
-                    installed_desktops.append(desktop)
-
-        if len(installed_desktops) == 0:
-            return self.install_desktop()
-        elif len(installed_desktops) == 1:
-            print(f"Found existing desktop: {installed_desktops[0]}")
-            return installed_desktops[0]
-        else:
-            print("Found both Niri and Hyprland.")
-            return "both"
-
-    def install_desktop(self):
-        self.print_header("Desktop Environment Installation")
-        print("Neither Niri nor Hyprland found. Would you like to install one?")
-        print("1: Niri")
-        print("2: Hyprland")
-        print("3: Both")
-        print("q: Quit")
-
-        choice = self.get_user_choice("Select an option: ", ["1", "2", "3", "q"])
-
-        install_cmd = ["sudo", self.package_manager]
-        if self.distro == "fedora":
-            install_cmd.extend(["install", "-y"])
-        else:
-            install_cmd.extend(
-                ["-S", "--noconfirm"] if self.distro == "arch" else ["install", "-y"]
-            )
-
-        if choice == "1":
-            print("Installing Niri...")
-            if self.run_command(install_cmd + ["niri"]):
-                return "niri"
-        elif choice == "2":
-            print("Installing Hyprland...")
-            if self.run_command(install_cmd + ["hyprland"]):
-                return "hyprland"
-        elif choice == "3":
-            print("Installing Niri and Hyprland...")
-            if self.run_command(install_cmd + ["niri", "hyprland"]):
-                return "both"
-        elif choice == "q":
-            print("Quitting.")
-            sys.exit(0)
-
-        print(
-            f"{self.Colors.RED}Installation failed or cancelled. Cannot proceed.{self.Colors.ENDC}"
-        )
-        return None
-
-    def install_desktop_configs(self, desktop_env):
-        if desktop_env in ["niri", "both"]:
-            print("Copying Niri config...")
-            niri_config_dir = os.path.join(self.config_dir, "niri")
-            os.makedirs(niri_config_dir, exist_ok=True)
-            niri_source = os.path.join(self.source_dir, "defaults", "config.kdl")
-            niri_dest = os.path.join(niri_config_dir, "config.kdl")
-
-            if os.path.exists(niri_dest):
-                print(
-                    f"{self.Colors.YELLOW}Niri config already exists.{self.Colors.ENDC}"
-                )
-                choice = self.get_user_choice(
-                    "Backup (b), Overwrite (o), Skip (s)? ", ["b", "o", "s"]
-                )
-                if choice == "b":
-                    print(f"Backing up {niri_dest}...")
-                    shutil.copy2(niri_dest, niri_dest + ".bak")
-                elif choice == "o":
-                    print(f"Overwriting {niri_dest}...")
-                elif choice == "s":
-                    print(f"Skipping {niri_dest}...")
-                    return
-            shutil.copy2(niri_source, niri_dest)
 
     def final_setup(self):
         self.print_header("Final Setup")
 
         default_starship_path = os.path.join(
-            self.source_dir, "starship", "starship.toml"
+            self.source_dir, "Water-Hyprland", "starship", "starship.toml"
         )
         starship_dest_dir = os.path.expanduser("~/.config")
 
@@ -1226,10 +1137,10 @@ class WaterHyprlandInstaller:
                         f"{self.Colors.YELLOW}Please remove it manually: sudo rm {command_path}{self.Colors.ENDC}"
                     )
 
-        wallpaper_path = os.path.expanduser("~/Pictures/Wallpapers/default.gif")
+        wallpaper_path = os.path.expanduser("~/Pictures/Wallpapers/sunflower-girl.jpg")
         if self.dry_run:
             wallpaper_path = os.path.join(
-                self.config_dir, "Pictures/Wallpapers/default.gif"
+                self.config_dir, "Pictures/Wallpapers/sunflower-girl.jpg"
             )
 
         if os.path.exists(wallpaper_path):
