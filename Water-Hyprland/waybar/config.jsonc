@@ -365,14 +365,14 @@
         "format-linked": "󰈀 {ifname} (No IP)",
         "format-disconnected": " ",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "/usr/local/bin/ags -t ControlPanel",
+        "on-click": "alacritty -e nmtui",
         "interval": 2,
     },
 
     "pulseaudio": {
         "format": "{icon}",
         "rotate": 0,
-        "format-muted": "婢",
+        "format-muted": "Muted",
         "tooltip-format": "{icon} {desc} // {volume}%",
         "scroll-step": 5,
         "format-icons": {
@@ -381,8 +381,8 @@
             "headset": " ",
             "phone": " ",
             "portable": " ",
-            "car": "",
-         "default": [" ", " ", " "]
+            "car": " ",
+         "default": ["  ", "  ", "  "]
         }
     },
 
