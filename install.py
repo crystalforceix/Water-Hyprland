@@ -876,7 +876,7 @@ class WaterHyprlandInstaller:
 
         core_folders = ["waybar", "wlogout", "matugen", "swaync", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "hypr"]
         for folder in core_folders:
-            source = os.path.join(self.source_dir, folder)
+            source = os.path.join(self.source_dir, "Water-Hyprland", folder)
             destination = os.path.join(self.config_dir, folder)
             if os.path.exists(destination):
                 print(
@@ -904,7 +904,7 @@ class WaterHyprlandInstaller:
                 )
         core_folder_home = [".icons"]
         for folder_home in core_folder_home:
-            source = os.path.join(self.source_dir, folder_home)
+            source = os.path.join(self.source_dir, "Water-Hyprland", "home-dots",folder_home)
             destination = os.path.expanduser(os.path.join("~", folder_home))
             if os.path.exists(destination):
                 print(
@@ -931,7 +931,7 @@ class WaterHyprlandInstaller:
                     f"{self.Colors.RED}Error copying '{source}': {e}{self.Colors.ENDC}"
                 )
         print("\nInstalling OneUI4 Icons...")
-        install_oneui_script_dir = os.path.join(self.source_dir, "lumina-shell-scripts", "install-oneui-scripts")
+        install_oneui_script_dir = os.path.join(self.source_dir, "Scripts-For-Installer", "install-oneui-scripts")
         self.run_command(["bash", "./one-ui-installer.sh"], cwd=install_oneui_script_dir)
 
         self.install_desktop_configs(desktop_env)
@@ -939,7 +939,7 @@ class WaterHyprlandInstaller:
         print(f"\n{self.Colors.GREEN}Installation complete.{self.Colors.ENDC}")
 
     def update_install(self):
-        self.print_header("Updating Existing Luminal Material Shell Installation")
+        self.print_header("Updating Existing Water Hyprland Installation")
 
         overwrite_choice = self.get_user_choice(
             "\nHow to handle file overwrites? (y: Yes to all, n: Prompt for each): ",
@@ -1139,9 +1139,9 @@ class WaterHyprlandInstaller:
             )
 
     def uninstall_water_hyprland(self):
-        self.print_header("Luminal Material Shell Uninstaller")
+        self.print_header("Water Hyprland Uninstaller")
         print(
-            f"{self.Colors.RED}{self.Colors.BOLD}WARNING: This will remove Luminal Material Shell configuration files.{self.Colors.ENDC}"
+            f"{self.Colors.RED}{self.Colors.BOLD}WARNING: This will remove Water Hyprland configuration files.{self.Colors.ENDC}"
         )
         print("This action is irreversible. Backup files (.bak) will NOT be removed.")
 
