@@ -703,7 +703,7 @@ class WaterHyprlandInstaller:
 
         print("\nGenerating initial color scheme with Matugen...")
         if shutil.which("matugen"):
-            matugen_command = ["matugen", "image", default_wallpaper_dest]
+            matugen_command = ["matugen", "image", default_wallpaper_dest, "-m", "light"]
             result = self.run_command(matugen_command)
             if result is None or (
                 hasattr(result, "returncode") and result.returncode != 0
