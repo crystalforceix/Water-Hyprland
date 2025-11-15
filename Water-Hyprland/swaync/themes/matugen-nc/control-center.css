@@ -7,7 +7,7 @@
 
 
 @define-color text                  @on_surface;
-@define-color background-alt  	    @surface_container_highest;
+@define-color background-alt  	    alpha(@surface_container_highest, 0.55);
 @define-color background-alt-alpha  alpha(@surface_bright, .55);
 @define-color background-sec  	    alpha(@surface, 0.55);
 @define-color selected        	    @primary;
