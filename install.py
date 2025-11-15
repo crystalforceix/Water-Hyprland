@@ -693,7 +693,13 @@ class WaterHyprlandInstaller:
         print("Wallpaper will be set on first desktop launch.")
 
         print("\nRun swaync daemon before generation color with matugen...")
-        self.run_command(["swaync"])
+        # Equal with swaync & disown
+        subprocess.Popen(
+            ["swaync"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            preexec_fn=os.setpgrp
+        )
 
         print("\nGenerating initial color scheme with Matugen...")
         if shutil.which("matugen"):
