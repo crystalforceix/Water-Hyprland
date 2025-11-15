@@ -39,6 +39,7 @@ button:hover {
     background-color: #b9b1e2; /*#b9b1e2;*/
     outline-style: none;
     border-color: rgba(0, 0, 0, 0.2);
+    border: 0px;
 }
 
 #logout {
