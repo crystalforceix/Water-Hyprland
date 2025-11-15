@@ -338,6 +338,7 @@ class WaterHyprlandInstaller:
                 "gnome-themes-extra",
                 "adw-gtk-theme",
                 "hyprland",
+                "xdg-desktop-portal-hyprland",
                 "fuzzel",
                 "cliphist",
                 "xdg-desktop-portal",
