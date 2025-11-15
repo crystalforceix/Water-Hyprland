@@ -781,9 +781,6 @@ class WaterHyprlandInstaller:
                 f"{self.Colors.YELLOW}[DRY RUN] Skipping AUR helper check and dependency installation.{self.Colors.ENDC}"
             )
 
-        desktop_env = self.check_desktop()
-        if not desktop_env:
-            return
 
         core_folders = ["waybar", "wlogout", "matugen", "swaync", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "hypr"]
         for folder in core_folders:
