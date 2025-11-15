@@ -353,6 +353,8 @@ class WaterHyprlandInstaller:
                 "brightnessctl",
                 "nautilus",
                 "alacritty",
+                "wlsunset",
+                "hyprpolkitagent",
             ],
             "fedora": [
                 "python3-pip",
@@ -690,6 +692,8 @@ class WaterHyprlandInstaller:
         )
         print("Wallpaper will be set on first desktop launch.")
 
+        print("\nRun swaync daemon before generation color with matugen...")
+        self.run_command(["swaync", "&", "disown"])
 
         print("\nGenerating initial color scheme with Matugen...")
         if shutil.which("matugen"):
