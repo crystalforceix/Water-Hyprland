@@ -333,6 +333,7 @@ class WaterHyprlandInstaller:
                 "playerctl",
                 "nerd-fonts",
                 "starship",
+                "libpulse",
                 "fish",
                 "python-pywalfox",
                 "gnome-themes-extra",
