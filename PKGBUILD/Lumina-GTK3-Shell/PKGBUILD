@@ -1,0 +1,24 @@
+# Maintainer: Gia Phu <crystalforceix@gmail.com>
+pkgname='luminal-gtk3-shell'
+pkgver=6.5
+pkgrel=1
+pkgdesc='Unofficial GTK 3 port of the libadwaita theme -- A Fork for Lumina Material Shell'
+arch=(any)
+url=https://github.com/crystalforceix/Lumina-GTK3-Shell
+license=('unknown')
+makedepends=(
+  dart-sass
+  git
+  meson
+)
+source=(git+https://github.com/crystalforceix/Lumina-GTK3-Shell.git)
+sha256sums=('SKIP')
+
+build() {
+  arch-meson Lumina-GTK3-Shell build
+  meson compile -C build
+}
+
+package() {
+  meson install -C build --destdir "${pkgdir}"
+}

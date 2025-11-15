@@ -1,0 +1,35 @@
+pkgbase = lumina-alacritty-smooth-cursor
+	pkgdesc = A cross-platform, GPU-accelerated terminal emulator with a smooth cursor motion patch
+	pkgver = 0.16.0.2435.g846e2862
+	pkgrel = 4
+	epoch = 1
+	url = https://github.com/crystalforceix/Lumina-Alacritty-Smooth-Cursor
+	install = smooth-cursor.install
+	arch = x86_64
+	arch = i686
+	arch = aarch64
+	license = Apache
+	checkdepends = ttf-dejavu
+	makedepends = rust
+	makedepends = cargo
+	makedepends = cmake
+	makedepends = fontconfig
+	makedepends = ncurses
+	makedepends = desktop-file-utils
+	makedepends = gdb
+	makedepends = libxcb
+	makedepends = libxkbcommon-x11
+	makedepends = git
+	makedepends = scdoc
+	makedepends = gzip
+	depends = freetype2
+	depends = fontconfig
+	depends = libxi
+	depends = libxcursor
+	depends = libxrandr
+	provides = alacritty
+	conflicts = alacritty
+	source = alacritty::git+https://github.com/crystalforceix/Lumina-Alacritty-Smooth-Cursor.git#branch=all-patches
+	sha256sums = SKIP
+
+pkgname = lumina-alacritty-smooth-cursor

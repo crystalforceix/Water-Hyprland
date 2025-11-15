@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+  echo "Hello this is polkit-gnome tool for root request by apps need to run at root"
+  echo "You can test it if you want. Pls use there flag below to toggle."
+  echo "For examples:"
+  echo "lumina-polkit-gnome-switch [off|on]"
+  echo -e " off: turn off polkit gnome tool\n on: turn on polkit gnome tool"
+  exit 1
+fi
+
+case "$1" in
+  off)
+    echo "Turn Off Polkit Gnome Tool."
+    pkill polkit-gnome
+    ;;
+  on)
+    echo "Turn On Polkit Gnome Tool."
+   /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & disown
+    ;;
+  *)
+    echo "Wrong flag: $1"
+    echo "lumina-polkit-gnome-switch [off|on]"
+    exit 1
+    ;;
+esac

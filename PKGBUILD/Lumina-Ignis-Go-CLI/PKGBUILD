@@ -1,0 +1,17 @@
+# Maintainer: Gia Phu <crystalforceix@gmail.com>
+pkgname=lumina-ignis-go-cli
+pkgver=3.2
+pkgrel=1
+pkgdesc="A CLI system for Ignis Shell written in go lang."
+arch=('any')
+url="https://github.com/crystalforceix/goignis"
+license=('MIT')
+depends=('go')
+makedepends=('git')
+source=("$pkgname::git+https://github.com/crystalforceix/goignis.git")
+md5sums=('SKIP')
+package() {
+  cd $pkgname
+  go build
+  install -D -m755 goignis "$pkgdir/usr/bin/goignis"
+}

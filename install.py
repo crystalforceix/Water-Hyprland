@@ -326,14 +326,9 @@ class WaterHyprlandInstaller:
 
         dependencies = {
             "arch": [
-                "python-ignis-git",
-                "ignis-gvc",
                 "ttf-material-symbols-variable-git",
                 "matugen-bin",
                 "swww",
-                "gnome-bluetooth-3.0",
-                "adw-gtk-theme",
-                "dart-sass",
                 "hyprlock",
                 "playerctl",
                 "nerd-fonts",
@@ -342,13 +337,10 @@ class WaterHyprlandInstaller:
                 "python-pywalfox",
                 "gnome-themes-extra",
                 "adw-gtk-theme",
-                "niri-git",
+                "hyprland",
                 "fuzzel",
                 "cliphist",
-                "xwayland-satellite",
                 "xdg-desktop-portal",
-                "xdg-desktop-portal-gtk",
-                "xdg-desktop-portal-gnome",
                 "xorg-xwayland",
                 "qt5ct",
                 "qt6ct",
@@ -358,9 +350,6 @@ class WaterHyprlandInstaller:
                 "gtk4",
                 "brightnessctl",
                 "nautilus",
-                "gpu-screen-recorder",
-                "slurp",
-                "networkmanager",
                 "alacritty",
             ],
             "fedora": [
@@ -444,22 +433,6 @@ class WaterHyprlandInstaller:
                         f"{self.Colors.RED}Failed to install some packages with dnf.{self.Colors.ENDC}"
                     )
 
-                print("\nInstalling ignis via pip...")
-                result = self.run_command(
-                    [
-                        "pip",
-                        "install",
-                        "--user",
-                        "git+https://github.com/ignis-sh/ignis.git",
-                    ]
-                )
-                if result is None or (
-                    hasattr(result, "returncode") and result.returncode != 0
-                ):
-                    print(
-                        f"{self.Colors.RED}Failed to install ignis via pip.{self.Colors.ENDC}"
-                    )
-
                 print("\nInstalling matugen via cargo...")
                 result = self.run_command(["cargo", "install", "matugen"])
                 if result is None or (
@@ -490,21 +463,6 @@ class WaterHyprlandInstaller:
                         f"{self.Colors.RED}Failed to install some packages with apt.{self.Colors.ENDC}"
                     )
 
-                print("\nInstalling ignis via pip...")
-                result = self.run_command(
-                    [
-                        "pip",
-                        "install",
-                        "--user",
-                        "git+https://github.com/ignis-sh/ignis.git",
-                    ]
-                )
-                if result is None or (
-                    hasattr(result, "returncode") and result.returncode != 0
-                ):
-                    print(
-                        f"{self.Colors.RED}Failed to install ignis via pip.{self.Colors.ENDC}"
-                    )
 
                 print("\nInstalling matugen via cargo...")
                 result = self.run_command(["cargo", "install", "matugen"])
@@ -559,22 +517,6 @@ class WaterHyprlandInstaller:
             else:
                 print("dart-sass (sass) is already installed.")
 
-        print("\nInstalling ignis-gvc from source...")
-        gvc_temp_dir = tempfile.mkdtemp()
-        gvc_repo_url = "https://github.com/ignis-sh/ignis-gvc.git"
-        gvc_repo_dir = os.path.join(gvc_temp_dir, "ignis-gvc")
-        self.run_command(["git", "clone", gvc_repo_url, gvc_repo_dir])
-
-        def check_pkgconfig_file(pc_name):
-            paths = [
-                "/usr/lib64/pkgconfig",
-                "/usr/lib/pkgconfig",
-                "/usr/share/pkgconfig",
-            ]
-            for path in paths:
-                if os.path.exists(os.path.join(path, pc_name)):
-                    return path
-            return None
 
         env = os.environ.copy()
         pc_path = check_pkgconfig_file("gobject-introspection-1.0.pc")
@@ -807,7 +749,7 @@ class WaterHyprlandInstaller:
         self.print_header("Final Setup")
 
         default_starship_path = os.path.join(
-            self.source_dir, "defaults", "starship.toml"
+            self.source_dir, "starship", "starship.toml"
         )
         starship_dest_dir = os.path.expanduser("~/.config")
 
@@ -818,14 +760,14 @@ class WaterHyprlandInstaller:
             shutil.copyfile(default_starship_path, default_starship_dest)
 
         default_wallpaper_path = os.path.join(
-            self.source_dir, "defaults", "default_animated_wallpaper.gif"
+            self.source_dir, "Wallpapers", "sunflower-girl", "sunflower-girl.jpg"
         )
         wallpaper_dir = os.path.expanduser("~/Pictures/Wallpapers")
         if self.dry_run:
             wallpaper_dir = os.path.join(self.config_dir, "Pictures/Wallpapers")
 
         os.makedirs(wallpaper_dir, exist_ok=True)
-        default_wallpaper_dest = os.path.join(wallpaper_dir, "default.gif")
+        default_wallpaper_dest = os.path.join(wallpaper_dir, "sunflower-girl.jpg")
         if not os.path.exists(default_wallpaper_dest):
             print("Copying default wallpaper...")
             shutil.copyfile(default_wallpaper_path, default_wallpaper_dest)
@@ -835,8 +777,6 @@ class WaterHyprlandInstaller:
         )
         print("Wallpaper will be set on first desktop launch.")
 
-        ignis_config_dir = os.path.join(self.config_dir, "ignis")
-        user_settings_path = os.path.join(ignis_config_dir, "user_settings.json")
 
         print("\nGenerating initial color scheme with Matugen...")
         if shutil.which("matugen"):
@@ -905,7 +845,7 @@ class WaterHyprlandInstaller:
                             f"{self.Colors.RED}Error while installing matugen colorscheme(hyprluna): {e}{self.Colors.ENDC}"
                         )
 
-        if shutil.which("lumina-shell-update") is None:
+        if shutil.which("water-hyprland-update") is None:
             self.install_as_command()
 
     def full_install(self):
@@ -934,7 +874,7 @@ class WaterHyprlandInstaller:
         if not desktop_env:
             return
 
-        core_folders = ["ignis", "matugen", "hyprlock", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "lumina-shell-scripts", "hypr"]
+        core_folders = ["waybar", "wlogout", "matugen", "swaync", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "hypr"]
         for folder in core_folders:
             source = os.path.join(self.source_dir, folder)
             destination = os.path.join(self.config_dir, folder)
@@ -1124,7 +1064,7 @@ class WaterHyprlandInstaller:
                 )
                 return
 
-        dest_file = os.path.join(dest_dir, "lumina-shell-update")
+        dest_file = os.path.join(dest_dir, "water-hyprland-update")
         try:
             cmd = ["sudo", "cp", sys.argv[0], dest_file]
             result = self.run_command(cmd)
@@ -1156,13 +1096,13 @@ class WaterHyprlandInstaller:
             return
 
         print(
-            f"{self.Colors.GREEN}Installation as command complete. You can now run 'lumina-shell-update' from anywhere.{self.Colors.ENDC}"
+            f"{self.Colors.GREEN}Installation as command complete. You can now run 'water-hyprland-update' from anywhere.{self.Colors.ENDC}"
         )
 
     def update_installed_command_if_needed(self):
-        installed_path = "/usr/local/bin/lumina-shell-update"
+        installed_path = "/usr/local/bin/water-hyprland-update"
         cloned_script = sys.argv[0]
-        if os.path.basename(cloned_script) == "lumina-shell-update":
+        if os.path.basename(cloned_script) == "water-hyprland-update":
             cloned_script = os.path.join(self.source_dir, "install.py")
         if not os.path.exists(installed_path):
             return
@@ -1181,21 +1121,21 @@ class WaterHyprlandInstaller:
 
         if installed_hash and cloned_hash and installed_hash != cloned_hash:
             print(
-                f"{self.Colors.YELLOW}Updating installed lumina-shell-update command...{self.Colors.ENDC}"
+                f"{self.Colors.YELLOW}Updating installed water-hyprland-update command...{self.Colors.ENDC}"
             )
             cmd = ["sudo", "cp", cloned_script, installed_path]
             result = self.run_command(cmd)
             if result and result.returncode == 0:
                 print(
-                    f"{self.Colors.GREEN}lumina-shell-update command updated successfully.{self.Colors.ENDC}"
+                    f"{self.Colors.GREEN}water-hyprland-update command updated successfully.{self.Colors.ENDC}"
                 )
             else:
                 print(
-                    f"{self.Colors.RED}Failed to update lumina-shell-update command.{self.Colors.ENDC}"
+                    f"{self.Colors.RED}Failed to update water-hyprland-update command.{self.Colors.ENDC}"
                 )
         else:
             print(
-                f"{self.Colors.GREEN}Installed lumina-shell-update command is up to date.{self.Colors.ENDC}"
+                f"{self.Colors.GREEN}Installed water-hyprland-update command is up to date.{self.Colors.ENDC}"
             )
 
     def uninstall_water_hyprland(self):
@@ -1213,29 +1153,28 @@ class WaterHyprlandInstaller:
             return
 
         paths_to_remove = {
-            "ignis config": os.path.join(self.config_dir, "ignis"),
             "matugen config": os.path.join(self.config_dir, "matugen"),
-            "hyprlock config": os.path.join(self.config_dir, "hyprlock"),
+            "hyprland and hyprlock config": os.path.join(self.config_dir, "hypr"),
             "fish config": os.path.join(self.config_dir, "fish"),
             "gtk-3.0 config": os.path.join(self.config_dir, "gtk-3.0"),
             "gtk-4.0 config": os.path.join(self.config_dir, "gtk-4.0"),
             "helix config": os.path.join(self.config_dir, "helix"),
             "fuzzel config": os.path.join(self.config_dir, "fuzzel"),
-            "lumina shell scripts folder": os.path.join(self.config_dir, "lumina-shell-scripts"),
-            "Niri config file": os.path.join(self.config_dir, "niri", "config.kdl"),
-            "Hyprlock and Hypr dir config": os.path.join(self.config_dir, "hypr"),
+            "swaync config": os.path.join(self.config_dir, "swaync"),
+            "wlogout": os.path.join(self.config_dir, "wlogout"),
+            "waybar": os.path.join(self.config_dir, "waybar"),
         }
 
-        print("\nThe following Luminal Material Shell configuration items will be removed if they exist:")
+        print("\nThe following Water Hyprland configuration items will be removed if they exist:")
         items_found = False
         for name, path in paths_to_remove.items():
             if os.path.exists(path):
                 print(f"- {name} ({path})")
                 items_found = True
 
-        command_path = "/usr/local/bin/lumina-shell-update"
+        command_path = "/usr/local/bin/water-hyprland-update"
         if os.path.exists(command_path):
-            print(f"- lumina-shell-update command ({command_path})")
+            print(f"- water-hyprland-update command ({command_path})")
             items_found = True
 
         if not items_found and not self.dry_run:
@@ -1271,17 +1210,17 @@ class WaterHyprlandInstaller:
                     )
 
         if os.path.exists(command_path):
-            print("Removing lumina-shell-update command (requires sudo)...")
+            print("Removing water-hyprland-update command (requires sudo)...")
             cmd = ["sudo", "rm", command_path]
             result = self.run_command(cmd)
             if not self.dry_run:
                 if result and result.returncode == 0:
                     print(
-                        f"{self.Colors.GREEN}Removed lumina-shell-update command.{self.Colors.ENDC}"
+                        f"{self.Colors.GREEN}Removed water-hyprland-update command.{self.Colors.ENDC}"
                     )
                 else:
                     print(
-                        f"{self.Colors.RED}Failed to remove lumina-shell-update command.{self.Colors.ENDC}"
+                        f"{self.Colors.RED}Failed to remove water-hyprland-update command.{self.Colors.ENDC}"
                     )
                     print(
                         f"{self.Colors.YELLOW}Please remove it manually: sudo rm {command_path}{self.Colors.ENDC}"

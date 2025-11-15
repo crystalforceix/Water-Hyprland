@@ -1,0 +1,48 @@
+# thx https://aur.archlinux.org/cgit/aur.git/tree/way-displays.install?h=way-displays
+all_off="$(tput sgr0)"
+bold="${all_off}$(tput bold)"
+red="${bold}$(tput setaf 1)"
+green="${bold}$(tput setaf 2)" # PR
+yellow="${bold}$(tput setaf 3)" # title
+blue="${bold}$(tput setaf 4)" # section
+magenta="${bold}$(tput setaf 5)" # issue
+
+# Colored makepkg-like functions
+note() {
+    printf "${blue}==>${yellow} NOTE:${all_off} ${1}\n"
+}
+
+plain() {
+    printf "${1}\n"
+}
+
+green() {
+    printf "${green}${1}${all_off}\n"
+}
+
+yello() {
+    printf "${yellow}${1}${all_off}\n"
+}
+
+blue() {
+    printf "${blue}${1}${all_off}\n"
+}
+
+magen() {
+    printf "${magenta}${1}${all_off}\n"
+}
+
+post_install() {
+    blue "This is a fork of Alacritty!"
+}
+
+post_upgrade() {
+    blue "lumina-alacritty-smooth-cursor was updated"
+    magen "Important changes:"
+    green "- Added seltools patch. See README.md on GitHub for more info"
+    magen "Older changes:"
+    green "- Patches rebased to match upstream Alacritty's master branch"
+    green "- Fixed Wayland support. No XWayland is required anymore."
+    green "- Animation speed no longer depends on FPS. You might want to adjust your motion factor because it might've been affected by your FPS previously"
+    green "- Idle resource consumption greatly reduced"
+}
