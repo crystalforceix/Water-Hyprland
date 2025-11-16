@@ -794,7 +794,7 @@ class WaterHyprlandInstaller:
             )
 
 
-        core_folders = ["waybar", "wlogout", "matugen", "swaync", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "hypr"]
+        core_folders = ["waybar", "wlogout", "matugen", "swaync", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "hypr", "swaync-no-cursor"]
         for folder in core_folders:
             source = os.path.join(self.source_dir, "Water-Hyprland", folder)
             destination = os.path.join(self.config_dir, folder)
@@ -874,7 +874,7 @@ class WaterHyprlandInstaller:
         if delete_choice == "y":
             self.auto_confirm_delete = True
 
-        core_folders = ["ignis", "matugen", "hyprlock", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "lumina-shell-scripts", "hypr"]
+        core_folders = ["ignis", "matugen", "hyprlock", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "lumina-shell-scripts", "hypr", "swaync-no-cursor"]
         for folder in core_folders:
             source_path = os.path.join(self.source_dir, folder)
             dest_path = os.path.join(self.config_dir, folder)
@@ -1080,6 +1080,7 @@ class WaterHyprlandInstaller:
             "helix config": os.path.join(self.config_dir, "helix"),
             "fuzzel config": os.path.join(self.config_dir, "fuzzel"),
             "swaync config": os.path.join(self.config_dir, "swaync"),
+            "swaync-no-cursor config": os.path.join(self.config_dir, "swaync-no-cursor"),
             "wlogout": os.path.join(self.config_dir, "wlogout"),
             "waybar": os.path.join(self.config_dir, "waybar"),
         }
