@@ -521,54 +521,6 @@ class WaterHyprlandInstaller:
             else:
                 print("dart-sass (sass) is already installed.")
 
-        if not shutil.which("swww"):
-            print("\nswww not found, attempting to build from source...")
-            temp_dir = tempfile.mkdtemp()
-            swww_repo_url = "https://github.com/LGFae/swww.git"
-            swww_repo_dir = os.path.join(temp_dir, "swww")
-
-            print(f"Cloning {swww_repo_url} to {swww_repo_dir}...")
-            result = self.run_command(
-                ["git", "clone", swww_repo_url, swww_repo_dir], cwd=temp_dir
-            )
-                print("Building swww with cargo...")
-                result = self.run_command(
-                    ["cargo", "build", "--release"], cwd=swww_repo_dir, env=env
-                )
-                if result and result.returncode == 0:
-                    for binary in ["swww", "swww-daemon"]:
-                        src = os.path.join(swww_repo_dir, "target", "release", binary)
-                        dest = os.path.join("/usr/local/bin", binary)
-                        if os.path.exists(src):
-                            copy_result = self.run_command(["sudo", "cp", src, dest])
-                            if copy_result and copy_result.returncode == 0:
-                                print(
-                                    f"{self.Colors.GREEN}Installed {binary} to /usr/local/bin.{self.Colors.ENDC}"
-                                )
-                            else:
-                                print(
-                                    f"{self.Colors.RED}Failed to copy {binary} to /usr/local/bin.{self.Colors.ENDC}"
-                                )
-                        else:
-                            print(
-                                f"{self.Colors.RED}Binary {binary} not found after build.{self.Colors.ENDC}"
-                            )
-                    print(
-                        f"{self.Colors.YELLOW}Optional: Autocompletion scripts are available in the completions directory of the swww repo.{self.Colors.ENDC}"
-                    )
-                else:
-                    print(
-                        f"{self.Colors.RED}Error building swww with cargo.{self.Colors.ENDC}"
-                    )
-            else:
-                print(
-                    f"{self.Colors.RED}Error cloning swww repository.{self.Colors.ENDC}"
-                )
-
-            shutil.rmtree(temp_dir)
-        else:
-            print("swww found in PATH.")
-
         self.print_header("Installing Local PKGBUILD Packages -- Require **Sudo** Privileges")
 
         if shutil.which("alacritty"):
