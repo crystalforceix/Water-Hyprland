@@ -355,6 +355,10 @@ class WaterHyprlandInstaller:
                 "alacritty",
                 "wlsunset",
                 "hyprpolkitagent",
+                "waybar",
+                "wlogout",
+                "swaync",
+                "pavucontrol",
             ],
             "fedora": [
                 "python3-pip",
