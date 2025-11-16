@@ -521,51 +521,6 @@ class WaterHyprlandInstaller:
             else:
                 print("dart-sass (sass) is already installed.")
 
-
-        env = os.environ.copy()
-        pc_path = check_pkgconfig_file("gobject-introspection-1.0.pc")
-        if pc_path:
-            env["PKG_CONFIG_PATH"] = f"{pc_path}:{env.get('PKG_CONFIG_PATH', '')}"
-        else:
-            print(
-                f"{self.Colors.RED}gobject-introspection-1.0.pc not found. Please install gobject-introspection-devel.{self.Colors.ENDC}"
-            )
-
-        result = self.run_command(
-            ["meson", "setup", "build", "--prefix=/usr"], cwd=gvc_repo_dir, env=env
-        )
-        if result is None or (hasattr(result, "returncode") and result.returncode != 0):
-            print(
-                f"{self.Colors.RED}Failed to run meson setup for ignis-gvc.{self.Colors.ENDC}"
-            )
-        else:
-            result = self.run_command(
-                ["meson", "compile", "-C", "build"], cwd=gvc_repo_dir, env=env
-            )
-            if result is None or (
-                hasattr(result, "returncode") and result.returncode != 0
-            ):
-                print(
-                    f"{self.Colors.RED}Failed to compile ignis-gvc with meson.{self.Colors.ENDC}"
-                )
-            else:
-                result = self.run_command(
-                    ["sudo", "meson", "install", "-C", "build"],
-                    cwd=gvc_repo_dir,
-                    env=env,
-                )
-                if result is None or (
-                    hasattr(result, "returncode") and result.returncode != 0
-                ):
-                    print(
-                        f"{self.Colors.RED}Failed to install ignis-gvc with meson.{self.Colors.ENDC}"
-                    )
-                else:
-                    print(
-                        f"{self.Colors.GREEN}Installed ignis-gvc from source using meson.{self.Colors.ENDC}"
-                    )
-        shutil.rmtree(gvc_temp_dir)
-
         if not shutil.which("swww"):
             print("\nswww not found, attempting to build from source...")
             temp_dir = tempfile.mkdtemp()
@@ -576,18 +531,6 @@ class WaterHyprlandInstaller:
             result = self.run_command(
                 ["git", "clone", swww_repo_url, swww_repo_dir], cwd=temp_dir
             )
-            if result and result.returncode == 0:
-                env = os.environ.copy()
-                pc_path = check_pkgconfig_file("wayland-protocols.pc")
-                if pc_path:
-                    env["PKG_CONFIG_PATH"] = (
-                        f"{pc_path}:{env.get('PKG_CONFIG_PATH', '')}"
-                    )
-                else:
-                    print(
-                        f"{self.Colors.RED}wayland-protocols.pc not found. Please install wayland-protocols-devel.{self.Colors.ENDC}"
-                    )
-
                 print("Building swww with cargo...")
                 result = self.run_command(
                     ["cargo", "build", "--release"], cwd=swww_repo_dir, env=env
