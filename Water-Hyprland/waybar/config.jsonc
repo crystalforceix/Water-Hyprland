@@ -22,7 +22,7 @@
 "custom/nightlight": {
     "format": "<span color='#021c18'></span> <span color='#313436'></span> ",
     "format-alt": "󰈈 <span color='#bbc2c7'></span> ",
-    "on-click": "~/.config/water-hyprland-global-scripts/wlsunset/toggle-wlsunset.sh",
+    "on-click": "bash -c ~/.config/water-hyprland-global-scripts/wlsunset-scripts/toggle_wlsunset.sh",
     "tooltip": false,
 },
 

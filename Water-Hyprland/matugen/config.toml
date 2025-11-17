@@ -5,7 +5,7 @@ set = true
 
 [templates.hypr]
 input_path = './templates/colors.conf'
-output_path = '~/.config/hypr/colors.conf'
+output_path = '~/.config/hypr/hyprland/colors.conf'
 
 [templates.hyprlock]
 input_path = './templates/hyprlock.conf'
