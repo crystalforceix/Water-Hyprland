@@ -1,16 +1,16 @@
 #!/bin/bash
 
-SELECTION=$(printf "1 - Capture window\n2 - Capture region\n3 - Clear notification history\n4 - Enable notification popup\n5 - Disable notification popup" | fuzzel --dmenu -l 5 -p "Swaync option select: ")
+SELECTION=$(printf "1 - Capture window\n2 - Capture region\n3 - Record screen with audio\n4 - Record screen with no audio\n5 - Stop recording" | fuzzel --dmenu -l 5 -p "Screen capture select option: ")
 
 case $SELECTION in
 	*"Capture window")
-		hyprshot -m window;;
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/screen-capture-scripts/screen-capture-window.sh;;
 	*"Capture region")
-		hyprshot -m region;;
-	*"Clear notification history")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/clear-swaync-notification-history.sh;;
-	*"Enable notification popup")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/enable-swaync-notification-popup.sh;;
-	*"Disable notification popup")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/disable-swaync-notification-popup.sh;;
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/screen-capture-scripts/screen-capture-region.sh;;
+	*"Record screen with audio")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/screen-capture-scripts/record-screen-default.sh;;
+	*"Record screen with no audio")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/screen-capture-scripts/record-screen-no-sound.sh;;
+	*"Stop recording")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/screen-capture-scripts/stop-record-screen.sh;;
 esac

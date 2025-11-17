@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SELECTION="$(printf "1 - Global reload\n2 - Toggle night shift for eyes\n3 - Change wallpaper with dark mode\n4 - Change wallpaper with light mode\n5 - Screen capture\n6 - Powermenu\n7 - Swaync options\n8 - WIP" | fuzzel --dmenu -l 8 -p "Utility selection: ")"
+SELECTION="$(printf "1 - Global reload\n2 - Toggle night shift for eyes\n3 - Change wallpaper with dark mode\n4 - Change wallpaper with light mode\n5 - Screen capture\n6 - Powermenu\n7 - Swaync options" | fuzzel --dmenu -l 7 -p "Utility select option: ")"
 
 case $SELECTION in
 	*"Global reload")
@@ -12,11 +12,9 @@ case $SELECTION in
 	*"Change wallpaper with light mode")
 		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper-with-light-mode.sh;;
 	*"Screen capture")
-	  systemctl poweroff;;
+	  bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/exec-scripts/open-fuzzel-screen-capture.sh;;
 	*"Powermenu")
 		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/exec-scripts/open-fuzzel-powermenu.sh;;
 	*"Swaync options")
 		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/exec-scripts/open-fuzzel-swaync-options.sh;;
-	*"WIP")
-		echo "hello world";;
 esac
