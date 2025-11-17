@@ -1,20 +1,20 @@
 #!/bin/bash
 
-SELECTION="$(printf "1 - Change wallpaper\n2 - Suspend\n3 - Suspend then lock\n4 - Log out\n5 - Shutdown\n6 - Reboot\n7 - Reboot to UEFI\n8 - Hard reboot" | fuzzel --dmenu -l 8 -p "Power Menu: ")"
+SELECTION="$(printf "1 - Global reload\n2 - Toggle night shift for eyes\n3 - Change wallpaper with dark mode\n4 - Change wallpaper with light mode\n5 - Screen capture\n6 - Powermenu\n7 - Reboot to UEFI\n8 - Hard reboot" | fuzzel --dmenu -l 8 -p "Utility selection: ")"
 
 case $SELECTION in
+	*"Global reload")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/reload-scripts/global-reload.sh;;
+	*"Toggle night shift for eyes")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wlsunset-scripts/toggle_wlsunset.sh;;
 	*"Change wallpaper with dark mode")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper.sh;;
-	*"Suspend")
-		systemctl suspend;;
-	*"Suspend then lock")
-		sleep 1 && systemctl suspend && hyprlock;;
-	*"Log out")
-		sleep 0.5 && hyprctl dispatch exit;;
-	*"Shutdown")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper-with-dark-mode.sh;;
+	*"Change wallpaper with light mode")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper-with-light-mode.sh;;
+	*"Screen capture")
 	  systemctl poweroff;;
-	*"Reboot")
-		systemctl reboot;;
+	*"Powermenu")
+		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/exec-scripts/open-fuzzel-powermenu.sh;;
 	*"Reboot to UEFI")
 		systemctl reboot --firmware-setup;;
 	*"Hard reboot")

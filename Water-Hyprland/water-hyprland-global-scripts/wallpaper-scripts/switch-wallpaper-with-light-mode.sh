@@ -26,7 +26,7 @@ fi
 THEME_NAME='wallpaper_theme'
 
 # Run matugen in dark mode
-matugen image \"\$FILE\" -m dark
+matugen image \"\$FILE\" -m light
 
 if [ \$? -ne 0 ]; then
     zenity --error --text='Failed while executing matugen!'
