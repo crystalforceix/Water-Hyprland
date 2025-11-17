@@ -4,13 +4,13 @@ SELECTION=$(printf "1 - Switch to swaync no cursor mode\n2 - Switch to swaync cu
 
 case $SELECTION in
 	*"Switch to swaync no cursor mode")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/enable-swaync-no-cursor-mode.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/swaync-scripts/enable-swaync-no-cursor-mode.sh;;
 	*"Switch to swaync cursor mode")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/enable-swaync-cursor-mode.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/swaync-scripts/enable-swaync-cursor-mode.sh;;
 	*"Clear notification history")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/clear-swaync-notification-history.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/swaync-scripts/clear-swaync-notification-history.sh;;
 	*"Enable notification popup")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/enable-swaync-notification-popup.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/swaync-scripts/enable-swaync-notification-popup.sh;;
 	*"Disable notification popup")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/swaync-scripts/disable-swaync-notification-popup.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/swaync-scripts/disable-swaync-notification-popup.sh;;
 esac

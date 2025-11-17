@@ -4,17 +4,17 @@ SELECTION="$(printf "1 - Global reload\n2 - Toggle night shift for eyes\n3 - Cha
 
 case $SELECTION in
 	*"Global reload")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/reload-scripts/global-reload.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/reload-scripts/global-reload.sh;;
 	*"Toggle night shift for eyes")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wlsunset-scripts/toggle_wlsunset.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/wlsunset-scripts/toggle_wlsunset.sh;;
 	*"Change wallpaper with dark mode")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper-with-dark-mode.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper-with-dark-mode.sh;;
 	*"Change wallpaper with light mode")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper-with-light-mode.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/wallpaper-scripts/switch-wallpaper-with-light-mode.sh;;
 	*"Screen capture")
-	  bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/exec-scripts/open-fuzzel-screen-capture.sh;;
+	  bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-screen-capture.sh;;
 	*"Powermenu")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/exec-scripts/open-fuzzel-powermenu.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-powermenu.sh;;
 	*"Swaync options")
-		bash -c ~/Water-Hyprland/Water-Hyprland/water-hyprland-global-scripts/exec-scripts/open-fuzzel-swaync-options.sh;;
+		bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-swaync-options.sh;;
 esac
