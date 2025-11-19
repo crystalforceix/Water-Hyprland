@@ -578,14 +578,14 @@ class WaterHyprlandInstaller:
             shutil.copyfile(default_starship_path, default_starship_dest)
 
         default_wallpaper_path = os.path.join(
-            self.source_dir, "Wallpapers", "sunflower-girl", "sunflower-girl.jpg"
+            self.source_dir, "Wallpapers", "girl-with-lemon-tree", "girl-with-lemon-tree.png"
         )
         wallpaper_dir = os.path.expanduser("~/Pictures/Wallpapers")
         if self.dry_run:
             wallpaper_dir = os.path.join(self.config_dir, "Pictures/Wallpapers")
 
         os.makedirs(wallpaper_dir, exist_ok=True)
-        default_wallpaper_dest = os.path.join(wallpaper_dir, "sunflower-girl.jpg")
+        default_wallpaper_dest = os.path.join(wallpaper_dir, "girl-with-lemon-tree.png")
         if not os.path.exists(default_wallpaper_dest):
             print("Copying default wallpaper...")
             shutil.copyfile(default_wallpaper_path, default_wallpaper_dest)
@@ -606,7 +606,7 @@ class WaterHyprlandInstaller:
 
         print("\nGenerating initial color scheme with Matugen...")
         if shutil.which("matugen"):
-            matugen_command = ["matugen", "image", default_wallpaper_dest, "-m", "light"]
+            matugen_command = ["matugen", "image", default_wallpaper_dest, "-m", "dark"]
             result = self.run_command(matugen_command)
             if result is None or (
                 hasattr(result, "returncode") and result.returncode != 0
