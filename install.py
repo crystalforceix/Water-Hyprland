@@ -363,6 +363,8 @@ class WaterHyprlandInstaller:
                 "hyprshot",
                 "libnotify",
                 "zenity",
+                "nwg-dock-hyprland",
+                "nwg-drawer",
             ],
             "fedora": [
                 "python3-pip",
@@ -697,7 +699,7 @@ class WaterHyprlandInstaller:
             )
 
 
-        core_folders = ["waybar", "wlogout", "matugen", "swaync", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "hypr", "swaync-no-cursor", "water-hyprland-global-scripts"]
+        core_folders = ["waybar", "wlogout", "matugen", "swaync", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "hypr", "swaync-no-cursor", "water-hyprland-global-scripts", "nwg-dock-hyprland", "nwg-drawer"]
         for folder in core_folders:
             source = os.path.join(self.source_dir, "Water-Hyprland", folder)
             destination = os.path.join(self.config_dir, folder)
@@ -777,7 +779,7 @@ class WaterHyprlandInstaller:
         if delete_choice == "y":
             self.auto_confirm_delete = True
 
-        core_folders = ["ignis", "matugen", "hyprlock", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "lumina-shell-scripts", "hypr", "swaync-no-cursor", "water-hyprland-global-scripts"]
+        core_folders = ["ignis", "matugen", "hyprlock", "fish", "gtk-3.0", "gtk-4.0", "helix", "fuzzel", "lumina-shell-scripts", "hypr", "swaync-no-cursor", "water-hyprland-global-scripts", "nwg-dock-hyprland", "nwg-drawer"]
         for folder in core_folders:
             source_path = os.path.join(self.source_dir, folder)
             dest_path = os.path.join(self.config_dir, folder)
@@ -986,7 +988,9 @@ class WaterHyprlandInstaller:
             "swaync-no-cursor config": os.path.join(self.config_dir, "swaync-no-cursor"),
             "wlogout": os.path.join(self.config_dir, "wlogout"),
             "waybar": os.path.join(self.config_dir, "waybar"),
-            "water-hyprland-global-scripts config": os.path.join(self.config_dir, "water-hyprland-global-scripts")
+            "water-hyprland-global-scripts config": os.path.join(self.config_dir, "water-hyprland-global-scripts"),
+            "nwg-dock-hyprland config": os.path.join(self.config_dir, "nwg-dock-hyprland"),
+            "nwg-drawer config": os.path.join(self.config_dir, "nwg-drawer")
         }
 
         print("\nThe following Water Hyprland configuration items will be removed if they exist:")

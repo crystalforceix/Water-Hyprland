@@ -1,0 +1,44 @@
+@import url("colors.css");
+window {
+    padding: 10px; 
+    background: alpha(@background, 0.89);
+    border: 0px solid transparent;	
+  	border-radius: 0.5em;
+  	border: 1px solid transparent;	
+	margin:10px;
+}
+
+#box {
+  	/* Define attributes of the box surrounding icons here */
+  	padding: 3px;
+}
+
+#active {
+	/* This is to underline the button representing the currently active window */
+	border-bottom: solid 0px;
+	border-color: @primary;
+}
+
+button, image {
+	background: none;
+	border-style: none;
+	box-shadow: none;
+	color: @primary;
+}
+
+button {
+	padding: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+	color: @primary;
+	font-size: 12px
+}
+
+button:hover {
+	background-color: @primary_container;
+	border-radius: 10px;
+}
+
+button:focus {
+	box-shadow: none;
+}
