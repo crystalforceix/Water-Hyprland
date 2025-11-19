@@ -102,9 +102,13 @@
           "command": "obs"
         },
 	{
-	  "label": "󰌾",
-	  "command": "hyprlock"
+	  "label": "-",
+	  "command": "sleep 0.5"
 	},
+	{
+	  "label":"-",
+	  "command": "sleep 0.5"
+  },
 	{
 	  "label":"󰜉",
 	  "command": "reboot"
@@ -117,6 +121,14 @@
 	  "label":"󰀝",
 	  "command": "bash -c $HOME/.config/hypr/scripts/airplaneMode.sh",
 	  "type": "toggle"
+	},
+  {
+	  "label": "-",
+	  "command": "sleep 0.5"
+	},
+	{
+	  "label":"-",
+	  "command": "sleep 0.5"
 	}
       ]
     }
