@@ -95,11 +95,11 @@
         },
         {
           "label": "",
-          "command": "bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-utility.sh"
+          "command": "sleep 0.5"
         },
         { 
           "label": "󰻂",
-          "command": "bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-screen-capture.sh"
+          "command": "sleep 0.5"
         },
         {
 	        "label": "󰌾",
@@ -123,7 +123,7 @@
 	},
 	{
 	  "label":"󰀝",
-	  "command": "bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-powermenu.sh"
+	  "command": "sleep 0.5"
 	},
   {
 	  "label": "-",
