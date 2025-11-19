@@ -365,6 +365,7 @@ class WaterHyprlandInstaller:
                 "zenity",
                 "nwg-dock-hyprland",
                 "nwg-drawer",
+                "nwg-dock",
             ],
             "fedora": [
                 "python3-pip",
