@@ -87,7 +87,7 @@
         },
         {
           "label": "󰤨",
-          "command": "nm-connection-editor"
+          "command": "alacritty -e nmtui"
         },
         {
           "label": "󰂯",
@@ -95,11 +95,15 @@
         },
         {
           "label": "",
-          "command": "nwg-look"
+          "command": "bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-utility.sh"
         },
         { 
           "label": "󰻂",
-          "command": "obs"
+          "command": "bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-screen-capture.sh"
+        },
+        {
+	        "label": "󰌾",
+          "command": "hyprlock"
         },
 	{
 	  "label": "-",
@@ -119,8 +123,7 @@
 	},
 	{
 	  "label":"󰀝",
-	  "command": "bash -c $HOME/.config/hypr/scripts/airplaneMode.sh",
-	  "type": "toggle"
+	  "command": "bash -c ~/.config/water-hyprland-global-scripts/exec-scripts/open-fuzzel-powermenu.sh"
 	},
   {
 	  "label": "-",
