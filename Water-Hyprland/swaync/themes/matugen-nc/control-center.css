@@ -43,7 +43,7 @@
 /* Notifications  */
 .control-center .notification-row .notification-background,
 .control-center .notification-row .notification-background .notification.critical {
-  background-color: alpha(@accent, .55);
+  background-color: alpha(@primary, .45);
   margin: 4px 0px;
   padding: 4px;
 }
@@ -234,7 +234,7 @@
 
   /* NOTE: Background need *opacity 1* otherwise will turn into the album art blurred  */
 .widget-mpris-player {
-    background: @accent;
+    background: alpha(@primary, 0.2);
     padding: 6px 10px;
     margin: 10px;
     border-radius: 14px;
