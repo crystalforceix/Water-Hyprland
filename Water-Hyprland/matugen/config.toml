@@ -58,12 +58,12 @@ post_hook = 'pkill -SIGUSR2 waybar'
 [templates.swaync]
 input_path = './templates/matugen-swaync.css'
 output_path = '~/.config/swaync/matugen/matugen-swaync.css'
-post_hook = 'swaync-client -rs'
+post_hook = 'swaync-client -rs;'
 
 [templates.swayncnoncursor]
 input_path = './templates/matugen-swaync.css'
 output_path = '~/.config/swaync-no-cursor/matugen/matugen-swaync.css'
-post_hook = 'swaync-client -rs'
+post_hook = 'swaync-client -rs;'
 
 [templates.wlogout]
 input_path = './templates/colors.css'
