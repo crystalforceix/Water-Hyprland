@@ -1054,10 +1054,10 @@ class WaterHyprlandInstaller:
                         f"{self.Colors.YELLOW}Please remove it manually: sudo rm {command_path}{self.Colors.ENDC}"
                     )
 
-        wallpaper_path = os.path.expanduser("~/Pictures/Wallpapers/sunflower-girl.jpg")
+        wallpaper_path = os.path.expanduser("~/Pictures/Wallpapers/girl-with-lemon-tree.png")
         if self.dry_run:
             wallpaper_path = os.path.join(
-                self.config_dir, "Pictures/Wallpapers/sunflower-girl.jpg"
+                self.config_dir, "Pictures/Wallpapers/girl-with-lemon-tree.png"
             )
 
         if os.path.exists(wallpaper_path):
