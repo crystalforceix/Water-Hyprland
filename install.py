@@ -598,51 +598,51 @@ class WaterHyprlandInstaller:
         )
         print("Wallpaper will be set on first desktop launch.")
 
-        print("\nRun swaync daemon before generation color with matugen...")
-        # Equal with swaync & disown
-        subprocess.Popen(
-            ["swaync"],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            preexec_fn=os.setpgrp
-        )
+        # print("\nRun swaync daemon before generation color with matugen...")
+        # # Equal with swaync & disown
+        # subprocess.Popen(
+        #     ["swaync"],
+        #     stdout=subprocess.DEVNULL,
+        #     stderr=subprocess.DEVNULL,
+        #     preexec_fn=os.setpgrp
+        # )
 
-        print("\nRun nwg-dock-hyprland daemon before generation color with matugen...")
-        # Equal with nwg-dock-hyprland & disown
-        subprocess.Popen(
-            ["nwg-dock-hyprland", "-d"],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            preexec_fn=os.setpgrp
-        )
-        print("\nRun waybar daemon before generation color with matugen...")
+        # print("\nRun nwg-dock-hyprland daemon before generation color with matugen...")
+        # # Equal with nwg-dock-hyprland & disown
+        # subprocess.Popen(
+        #     ["nwg-dock-hyprland", "-d"],
+        #     stdout=subprocess.DEVNULL,
+        #     stderr=subprocess.DEVNULL,
+        #     preexec_fn=os.setpgrp
+        # )
+        # print("\nRun waybar daemon before generation color with matugen...")
         
-        # Equal with waybar & disown
-        subprocess.Popen(
-            ["waybar"],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            preexec_fn=os.setpgrp
-        )
+        # # Equal with waybar & disown
+        # subprocess.Popen(
+        #     ["waybar"],
+        #     stdout=subprocess.DEVNULL,
+        #     stderr=subprocess.DEVNULL,
+        #     preexec_fn=os.setpgrp
+        # )
 
-        print("\nGenerating initial color scheme with Matugen...")
-        if shutil.which("matugen"):
-            matugen_command = ["matugen", "image", default_wallpaper_dest, "-m", "dark"]
-            result = self.run_command(matugen_command)
-            if result is None or (
-                hasattr(result, "returncode") and result.returncode != 0
-            ):
-                print(
-                    f"{self.Colors.RED}Failed to generate color scheme with Matugen.{self.Colors.ENDC}"
-                )
-            else:
-                print(
-                    f"{self.Colors.GREEN}Initial color scheme generated.{self.Colors.ENDC}"
-                )
-        else:
-            print(
-                f"{self.Colors.RED}Matugen is not installed or not in PATH. Skipping color scheme generation. Please install matugen and run manually if desired.{self.Colors.ENDC}"
-            )
+        # print("\nGenerating initial color scheme with Matugen...")
+        # if shutil.which("matugen"):
+        #     matugen_command = ["matugen", "image", default_wallpaper_dest, "-m", "dark"]
+        #     result = self.run_command(matugen_command)
+        #     if result is None or (
+        #         hasattr(result, "returncode") and result.returncode != 0
+        #     ):
+        #         print(
+        #             f"{self.Colors.RED}Failed to generate color scheme with Matugen.{self.Colors.ENDC}"
+        #         )
+        #     else:
+        #         print(
+        #             f"{self.Colors.GREEN}Initial color scheme generated.{self.Colors.ENDC}"
+        #         )
+        # else:
+        #     print(
+        #         f"{self.Colors.RED}Matugen is not installed or not in PATH. Skipping color scheme generation. Please install matugen and run manually if desired.{self.Colors.ENDC}"
+        #     )
             
 
         hyprluna_extension_source = os.path.join(self.source_dir, "Extensions", "VSCodium", "hyprluna-theme-1.0.2.vsix")
