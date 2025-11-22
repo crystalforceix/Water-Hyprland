@@ -72,7 +72,7 @@ output_path = '~/.config/wlogout/colors.css'
 [templates.nwgdockhyprland]
 input_path = './templates/colors.css'
 output_path = '~/.config/nwg-dock-hyprland/colors.css'
-post_hook = 'pkill nwg-dock && nwg-dock-hyprland -d -p bottom -mb 5 & disown'
+post_hook = 'pkill nwg-dock && nwg-dock-hyprland -d -p bottom -mb 5 -nolauncher & disown'
 
 [templates.nwgdrawer]
 input_path = './templates/colors.css'
