@@ -366,6 +366,7 @@ class WaterHyprlandInstaller:
                 "nwg-dock-hyprland",
                 "nwg-drawer",
                 "nwg-dock",
+                "adw-gtk-theme",
             ],
             "fedora": [
                 "python3-pip",
@@ -562,9 +563,9 @@ class WaterHyprlandInstaller:
                         )
 
 
-        print("\nInstalling Custom GTK3 Shell from source...")
-        gtk3_shell_pkgbuild_dir = os.path.join(self.source_dir, "PKGBUILD", "Lumina-GTK3-Shell")
-        self.run_command(["makepkg", "-si", "--noconfirm"], cwd=gtk3_shell_pkgbuild_dir)
+        # print("\nInstalling Custom GTK3 Shell from source...")
+        # gtk3_shell_pkgbuild_dir = os.path.join(self.source_dir, "PKGBUILD", "Lumina-GTK3-Shell")
+        # self.run_command(["makepkg", "-si", "--noconfirm"], cwd=gtk3_shell_pkgbuild_dir)
 
     def final_setup(self):
         self.print_header("Final Setup")
